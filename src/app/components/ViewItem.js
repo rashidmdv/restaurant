@@ -4,8 +4,9 @@ export default function ViewItem({selectedItem,setSelectedItem}) {
     return (
         <div className="fixed top-[140px] inset-0 bg-opacity-60 flex justify-center items-center z-20 backdrop-blur-md bg-black/30 bg-opacity-100">
             <div className="bg-[#fff5e5] max-w-md text-center fixed bottom-0 md:bottom-[30%] lg:bottom-[0%] xl:bottom-[10%] 2xl:bottom-[25%]">
+                {/* close icon of item */}
                 <button
-                    className="absolute top-4 right-4 text-[#a86a30] text-5xl font-normal"
+                    className="absolute top-4 right-4 text-[#a86a30] text-5xl font-normal hover:cursor-pointer"
                     onClick={() => setSelectedItem(null)}
                 >
                     &times;

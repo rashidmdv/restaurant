@@ -17,16 +17,30 @@ export default function MenuSection() {
         }
       }, [selectedCategory]);
 
+      useEffect(() => {
+        if (selectedItem) {
+          document.body.classList.add("overflow-hidden");
+        } else {
+          document.body.classList.remove("overflow-hidden");
+        }
+
+        return () => {
+          document.body.classList.remove("overflow-hidden");
+        };
+      }, [selectedItem]);
+
     return (
       <section className="bg-[#fef5e5] text-[#bc7a2e]">
         <div className="menu mt-12 shadow-md fixed w-full z-10 bg-[#fef5e5]">
             <div className="category flex justify-center gap-5">
+                {/* display the category of items */}
                 {category.map((item, index) => (
                     <a href="#" key={index} className={`${selectedCategory == item.name && "font-semibold"}`} onClick={() => setSelectedCategory(item.name)}>{item.name}</a>
                 ))}
             </div>
             <div className="overflow-x-auto whitespace-nowrap px-4 py-2 xl:max-w-7xl xl:mx-auto md:text-center">
                 <div className="inline-flex gap-6">
+                    {/* display the sub category of items */}
                     {category.find((item) => item.name == selectedCategory).subCategory.map((item, index) =>(
                         <a href="#" key={item} className={`${selectedSubCategory == item && "font-semibold"}`} onClick={() => setSelectedSubCategory(item) } >{item}</a>
                     ))}
@@ -42,13 +56,16 @@ export default function MenuSection() {
                 </p>
             </div>
 
-            <div className="mt-8 space-y-6 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 mt-5">
+            <div className="space-y-6 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 mt-5">
+
+                {/* display the items */}
                 {menuItems.map((item, index) => (
                     <ItemCard key={index} item={item} setSelectedItem={setSelectedItem}></ItemCard>
                 ))}
+
             </div>
 
-            {/*  Popup */}
+            {/*  Popup or display the selected item */}
             {selectedItem && (
                 <ViewItem selectedItem={selectedItem} setSelectedItem={setSelectedItem}></ViewItem>
             )}
