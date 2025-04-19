@@ -60,7 +60,14 @@ export default function Navbar() {
           <div className="md:hidden backdrop-blur-sm bg-black/10 bg-opacity-100" style={{height:'100vh'}}>
             <div className='px-4 pb-4 z-20 background shadow-sm text-center' >
                 {navItems.map((item, index) =>(
-                    <Link key={index} href={item.href} className="block py-2 hover:text-blue-500 text-[15px]">{item.name}</Link>
+                    <Link
+                      key={index}
+                      href={item.href}
+                      className="block py-2 hover:text-black text-[15px]"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
                 )
                 )}
             </div>
